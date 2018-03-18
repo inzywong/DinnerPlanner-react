@@ -45,7 +45,10 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <li key={dish.id}>{dish.title}</li>
+        <a href="#" key={dish.id} data-id={dish.id} className="nav-to-dish">
+          <div className="dishes" style={{width:215}}><img className="dishImage" style={{width:200, height: 200}} src={"https://spoonacular.com/recipeImages/" + dish.image} />
+            <p className="dishTitle"> {dish.title} </p>
+          </div></a>
         )
         break;
       default:
@@ -56,9 +59,7 @@ class Dishes extends Component {
     return (
       <div className="Dishes">
         <h3>Dishes</h3>
-        <ul>
           {dishesList}
-        </ul>
       </div>
     );
   }

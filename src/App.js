@@ -18,6 +18,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">{this.state.title}</h1>
+          <hr></hr>
           
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome}/>
