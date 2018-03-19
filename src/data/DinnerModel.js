@@ -6,6 +6,7 @@ const DinnerModel = function () {
 
   let numberOfGuests = 4;
   let observers = [];
+  let menu = [];
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -16,6 +17,22 @@ const DinnerModel = function () {
     return numberOfGuests;
   };
 
+  this.getMenu = function () {
+    return menu;
+  }
+
+  this.addDishToMenu = function (dish) {
+    if(!menu.some(d => d.id === dish.id)) {
+      menu.push(dish);
+      notifyObservers();
+    }
+  }
+
+  this.removeDishFromMenu = function (dishId) {
+    menu = menu.filter((x) => x.id !== dishId)
+    notifyObservers();
+  }
+
   // API Calls
 
   this.getAllDishes = function (type, filter) {
@@ -25,6 +42,14 @@ const DinnerModel = function () {
     return fetch(url, httpOptions)
       .then(processResponse)
       .catch(handleError)
+  }
+
+
+  this.getDish = function(id) {
+    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + '/information';
+    return fetch(url, httpOptions)
+    .then(processResponse)
+    .catch(handleError);
   }
   
   // API Helper methods
