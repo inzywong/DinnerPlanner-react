@@ -53,6 +53,22 @@ class Sidebar extends Component {
 	
 
   render() {
+		
+		var dishesOnMenu = this.props.model.getMenu().map((dish) =>
+					<div className = 'row'> 
+						<div  className='col-md-6 noPadding'  > 
+							<p> {dish.title} </p>
+						</div>
+						<div  className='col-md-6 noPadding'  > 
+							<p> {dish.pricePerServing} </p>
+						</div>
+					</div>																						
+							
+    )				
+																
+				
+											 
+				
     return (
       <div className="Sidebar col-sm-2">
         <h1>My Dinner</h1>
@@ -78,6 +94,10 @@ class Sidebar extends Component {
 					<div class="col-md-6">
 						<p class="textAlignRight">Cost</p>
 					</div>
+				</div>
+
+				<div id="dish_cost">
+					{dishesOnMenu}
 				</div>
 
 				<div >

@@ -1,0 +1,31 @@
+
+
+.textJustifyCenter{
+	text-justify: center;
+}
+
+.dishPic{
+    width: 100%;	
+}
+
+
+.text-right{
+	text-align: right;
+}
+
+.red{
+    background-color: red;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.green{
+    background-color: green;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
