@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
+import { Link } from 'react-router-dom';
+
 
 
 class Sidebar extends Component {
@@ -93,7 +95,10 @@ class Sidebar extends Component {
 				</div>
 
 				<div className="col-md-12 text-center" id="confirmDinnerButton">
+				<Link to="/summary">
+
 					<button id="confirm_dinner_button" type="button" className="btn btn-primary">Confirm Dinner</button>
+					</Link>
 				</div>
 
 			  {/* This is what we had on the Template:

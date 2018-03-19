@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel'
 import SelectDish from "./SelectDish/SelectDish";
+import Summary from "./Summary/Summary";
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +38,8 @@ class App extends Component {
 		    <div className="appContent container-fluid">
           {/* We rended diffrent component based on the path */}
 					<Route exact path="/" component={Welcome}/> {/* This brings us to the Welcome view */}
-          <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>					
+          <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
+          <Route path="/summary" render={() => <Summary model={modelInstance}/>}/>					
 				</div>
 				{/* END OF CONTENT ----------------------------------------- */}			
 		
