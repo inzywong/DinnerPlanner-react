@@ -15,7 +15,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className= "App">
 				
         <header className="App-header">
 			
@@ -29,15 +29,21 @@ class App extends Component {
 					</div>
 				{/* END OF HEADER -------------------------------------------- */}
 			
-		          
+	
+        </header>
+		
+			
+				{/* CONTENT ------------------------------------------------ */}			
+		    <div class="appContent container-fluid">
           {/* We rended diffrent component based on the path */}
 					<Route exact path="/" component={Welcome}/> {/* This brings us to the Welcome view */}
-          <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
-        </header>
+          <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>					
+				</div>
+				{/* END OF CONTENT ----------------------------------------- */}			
 		
 		
 		    {/* FOOTER */}
-		    <div class="row myFooter">
+		    <div class="myFooter">
         	<div class="col-sm-12 text-center addBorder-top">
         		<p><span class="glyphicon glyphicon-copyright-mark"></span> 2018 KTH All RIGHTS RESERVED</p>
         	</div>		

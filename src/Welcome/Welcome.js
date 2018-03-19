@@ -7,7 +7,6 @@ class Welcome extends Component {
     return (
       <div className="Welcome">
 			
-
 					<div class="container-fluid myPadding" id="homeView" >
 							<div class="col-sm-3"></div>
 							<div class="col-sm-6 " id="introductionTextContainer">

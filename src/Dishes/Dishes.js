@@ -15,7 +15,7 @@ class Dishes extends Component {
     }
   }
 
-  // this methods is called by React lifecycle when the 
+  // This methods is called by React lifecycle when the 
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
   componentDidMount = () => {
@@ -45,21 +45,35 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-        <a href="#" key={dish.id} data-id={dish.id} className="nav-to-dish">
-          <div className="dishes" style={{width:215}}><img className="dishImage" style={{width:200, height: 200}} src={"https://spoonacular.com/recipeImages/" + dish.image} />
-            <p className="dishTitle"> {dish.title} </p>
-          </div></a>
+					<a href="#" key={dish.id} data-id={dish.id} className="nav-to-dish">
+						<div className="dishes floatLeft" style={{width:220, height: 260}}>
+							<img className="dishImage" style={{width:200, height: 200}} src={"https://spoonacular.com/recipeImages/" + dish.image} />
+							<p className="dishTitle"> {dish.title} </p>
+						</div>
+					</a>
         )
         break;
+				
       default:
         dishesList = <b>Failed to load data, please try again</b>
         break;
     }
 
     return (
-      <div className="Dishes">
-        <h3>Dishes</h3>
-          {dishesList}
+      <div className="Dishes col-sm-10">
+        <h1>Find a dish</h1> 
+			
+			
+			  {/* Dish Images */}
+				<div class="row">
+					<div class="col-md-12 " id="dishImages" > 
+							{dishesList}
+					</div>
+				</div>   
+			
+			
+			
+          
       </div>
     );
   }

@@ -1,5 +1,25 @@
 .dishes{
-border: 2px solid black;
-padding: 5px;
-margin: 5px;
+	border: 2px solid black;
+	padding: 5px;
+	margin: 5px;
 }
+
+
+.floatLeft{
+	float: left;
+}
+
+
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.green{
+    background-color: green;
+}
+.yellow{
+    background-color: yellow;
+}
+
