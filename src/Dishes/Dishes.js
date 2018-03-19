@@ -75,7 +75,7 @@ class Dishes extends Component {
     }
 
     return (
-      <div className="container col-md-10 Dishes">
+      <div className="container addBorder-left col-md-10 Dishes">
         <div className="row">
           <h3>Searchfield</h3>
           <div className="floatLeft">
