@@ -38,10 +38,9 @@ class Dishes extends Component {
   }
 
   handleChange(event){
-    console.log(event.target.value);
     this.setState({type: event.target.value})
     this.componentDidMount();
-    }
+  }
   handleSubmit(event){
     this.setState({filter: event.target.value})
     this.componentDidMount();  
@@ -81,7 +80,7 @@ class Dishes extends Component {
           <h3>Searchfield</h3>
           <div className="floatLeft">
             <form className="form-inline" id="searchBar">
-              <input type="text" ref="search" className="form-control col-sm-10 col-form-label mb-10 mr-sm-10 mb-sm-0" onSubmit={this.handleSubmit} placeholder="Search..."/>
+              <input type="text" ref="search" className="form-control col-sm-10 col-form-label mb-10 mr-sm-10 mb-sm-0" onChange={this.handleSubmit} placeholder="Search..."/>
               <span>
                 <button type="button" className="btn btn-primary specialButton">
                   <span className="glyphicon glyphicon-search "></span>
