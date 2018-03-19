@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import Welcome from './Welcome/Welcome';
-import { modelInstance } from './data/DinnerModel'
+import { modelInstance } from './data/DinnerModel';
 import SelectDish from "./SelectDish/SelectDish";
+
 import DishDetails from "./DishDetails/DishDetails";
 
+import Summary from "./Summary/Summary";
 
 class App extends Component {
   constructor(props) {
@@ -22,9 +24,9 @@ class App extends Component {
         <header className="App-header">
 			
 					{/* HEADER ------------------------------------------------- */}
-					<div class="row myHeader">
-							<div class="col-sm-12" style= {{padding: 0}}>
-									<div class="addBorder-bottom text-center">
+					<div className="row myHeader">
+							<div className="col-sm-12" style= {{padding: 0}}>
+									<div className="addBorder-bottom text-center">
 											<h1>{this.state.title}</h1>
 									</div>
 							</div>
@@ -36,20 +38,22 @@ class App extends Component {
 		
 			
 				{/* CONTENT ------------------------------------------------ */}			
-		    <div class="appContent container-fluid">
+		    <div className="appContent container-fluid">
           {/* We rended diffrent component based on the path */}
 					<Route exact path="/" component={Welcome}/> {/* This brings us to the Welcome view */}
-          <Route path="/search"  render={() => <SelectDish model={modelInstance}/>}/>			
+
+					<Route path="/search"  render={() => <SelectDish model={modelInstance}/>}/>			
           <Route path="/dish/:id" render={(props) => <DishDetails model={modelInstance} {...props}/>}/>
-			
+
+          <Route path="/summary" render={() => <Summary model={modelInstance}/>}/>					
 				</div>
 				{/* END OF CONTENT ----------------------------------------- */}			
 		
 		
 		    {/* FOOTER */}
-		    <div class="myFooter">
-        	<div class="col-sm-12 text-center addBorder-top">
-        		<p><span class="glyphicon glyphicon-copyright-mark"></span> 2018 KTH All RIGHTS RESERVED</p>
+		    <div className="myFooter">
+        	<div className="col-sm-12 text-center addBorder-top">
+        		<p><span className="glyphicon glyphicon-copyright-mark"></span> 2018 KTH All RIGHTS RESERVED</p>
         	</div>		
     		</div>
 				{/* END OF FOOTER */}

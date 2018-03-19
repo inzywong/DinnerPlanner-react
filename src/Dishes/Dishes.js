@@ -6,15 +6,18 @@ import {modelInstance} from '../data/DinnerModel';
 import { Link } from 'react-router-dom';
 
 
-
 class Dishes extends Component {
   constructor(props) {
     super(props);
     // We create the state to store the various statuses
     // e.g. API data loading or error 
     this.state = {
-      status: 'INITIAL'
+      status: 'INITIAL',
+      filter: '',
+      type: 'all' || ''
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // This methods is called by React lifecycle when the 
@@ -23,7 +26,7 @@ class Dishes extends Component {
   componentDidMount = () => {
     // when data is retrieved we update the state
     // this will cause the component to re-render
-    modelInstance.getAllDishes().then(dishes => {
+    modelInstance.getAllDishes( this.state.type,this.state.filter).then(dishes => {
       this.setState({
         status: 'LOADED',
         dishes: dishes.results
@@ -35,9 +38,19 @@ class Dishes extends Component {
     })
   }
 
+  handleChange(event){
+    this.setState({type: event.target.value})
+    this.componentDidMount();
+  }
+  handleSubmit(event){
+    this.setState({filter: event.target.value})
+    this.componentDidMount();  
+  }
+
+
+
   render() {
     let dishesList = null;
-    
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -64,20 +77,39 @@ class Dishes extends Component {
     }
 
     return (
-      <div className="Dishes col-sm-10">
-        <h1>Find a dish</h1> 
-			
-			
-			  {/* Dish Images */}
-				<div class="row">
-					<div class="col-md-12 " id="dishImages" > 
-							{dishesList}
-					</div>
-				</div>   
-			
-			
-			
-          
+      <div className="container addBorder-left col-md-10 Dishes">
+        <div className="row">
+          <h3>Searchfield</h3>
+          <div className="floatLeft">
+            <form className="form-inline" id="searchBar">
+              <input type="text" ref="search" className="form-control col-sm-10 col-form-label mb-10 mr-sm-10 mb-sm-0" onChange={this.handleSubmit} placeholder="Search..."/>
+              <span>
+                <button type="button" className="btn btn-primary specialButton">
+                  <span className="glyphicon glyphicon-search "></span>
+                  Search
+                </button>
+              </span>
+              <select className="custom-select dropdown btn btn-primary dropdown-toggle custom-select col-sm-4 col-form-label mb-4 mr-sm-4 mb-sm-0" id="select-dish-type" onChange={this.handleChange} value={this.state.value}>
+                <option value="all" >All</option>
+                <option value="starter">Starter</option>
+                <option value="main dish">Main Dish</option>
+                <option value="dessert">Dessert</option>
+                <option value="side dish">Side Dish</option>
+                <option value="salad">Salad</option>
+                <option value="bread">Bread</option>
+                <option value="soup">Soup</option>
+                <option value="beverage">Beverage</option>       
+              </select>
+            </form>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12" id="dishImages">
+            <h3>Dishes</h3>
+            <hr></hr>
+              {dishesList}
+          </div>
+        </div>
       </div>
     );
   }

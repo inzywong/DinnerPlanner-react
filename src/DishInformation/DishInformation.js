@@ -28,7 +28,7 @@ class DishInformation extends Component {
 	
 	
 	addDishToMenu = () => {
-		this.props.model.addDishToMenu(this.props.dish);
+		this.props.model.addDishToMenu_kaua(this.props.dish);
   }
 
 	render() {    
@@ -113,7 +113,7 @@ class DishInformation extends Component {
 							</div>
 			
 							<div className="col-md-12 text-left">
-								<button type="button" className="btn btn-primary" onClick={this.addDishToMenu} >Add to Menu</button>
+								<button type="button" className="btn btn-primary" onClick={this.addDishToMenu_kaua} >Add to Menu</button>
 							</div>		
 			
 						</div>

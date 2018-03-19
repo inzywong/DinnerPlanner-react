@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
+import { Link } from 'react-router-dom';
+
 
 
 class Sidebar extends Component {
@@ -75,24 +77,24 @@ class Sidebar extends Component {
 				<p>Number Of Guests: <span id="nGuests">{this.state.numberOfGuests}</span></p>
 
 				<div>
-					<button	class="btn" onClick={() => this.onNumberOfGuestsChanged(-1)}>
+					<button	className="btn" onClick={() => this.onNumberOfGuestsChanged(-1)}>
 						{/*glyphicon glyphicon-minus is not working I'm not sure why */}
-						<span class="glyphicon glyphicon-minus"> - </span>
+						<span className="glyphicon glyphicon-minus"> - </span>
 					</button>
-					<button class="btn" onClick={() => this.onNumberOfGuestsChanged(1)}>
-						<span class="glyphicon glyphicon-plus"> + </span>
+					<button className="btn" onClick={() => this.onNumberOfGuestsChanged(1)}>
+						<span className="glyphicon glyphicon-plus"> + </span>
 					</button>		
 				</div> 
 			
-				<div class="row" >
+				<div className="row" >
 					{/* left div */}
-					<div class="col-md-6 noPadding floatLeft" >
-						<p class="textAlignLeft">Dish Name</p>                    
+					<div className="col-md-6 noPadding floatLeft" >
+						<p className="textAlignLeft">Dish Name</p>                    
 					</div>
 
 					{/* right div */}
-					<div class="col-md-6">
-						<p class="textAlignRight">Cost</p>
+					<div className="col-md-6">
+						<p className="textAlignRight">Cost</p>
 					</div>
 				</div>
 
@@ -102,18 +104,21 @@ class Sidebar extends Component {
 
 				<div >
 					{/* left div */}
-					<div class="col-md-6 noPadding floatLeft" >
-					 <p class="textAlignLeft">TOTAL </p>                    
+					<div className="col-md-6 noPadding floatLeft" >
+					 <p className="textAlignLeft">TOTAL </p>                    
 					</div>
 
 					{/* right div */}
-					 <div class="col-md-6">
-					 <p id="total_cost" class="textAlignRight">SEK 0.00</p>
+					 <div className="col-md-6">
+					 <p id="total_cost" className="textAlignRight">SEK 0.00</p>
 					 </div>                        
 				</div>
 
-				<div class="col-md-12 text-center" id="confirmDinnerButton">
-					<button id="confirm_dinner_button" type="button" class="btn btn-primary">Confirm Dinner</button>
+				<div className="col-md-12 text-center" id="confirmDinnerButton">
+				<Link to="/summary">
+
+					<button id="confirm_dinner_button" type="button" className="btn btn-primary">Confirm Dinner</button>
+					</Link>
 				</div>
 
 			  {/* This is what we had on the Template:

@@ -4,9 +4,12 @@ const httpOptions = {
 
 const DinnerModel = function () {
 
+	
   var numberOfGuests = 4;
   var observers = [];
 	var dishesSelected = [];	
+  let menu = [];
+
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -17,26 +20,47 @@ const DinnerModel = function () {
     return numberOfGuests;
   };
 
+
 	
-	this.addDishToMenu = function(dish){
+	this.addDishToMenu_kaua = function(dish){
 		dishesSelected.push(dish);
 		
 		notifyObservers();		
 	};
 	
-	this.getMenu = function(){
+	this.getMenu_kaua = function(){
 		return dishesSelected;
 	}
 	
+
+  this.getMenu = function () {
+    return menu;
+  }
+
+  this.addDishToMenu = function (dish) {
+    if(!menu.some(d => d.id === dish.id)) {
+      menu.push(dish);
+      notifyObservers();
+    }
+  }
+
+  this.removeDishFromMenu = function (dishId) {
+    menu = menu.filter((x) => x.id !== dishId)
+    notifyObservers();
+  }
+
 	
   // API Calls
 
-  this.getAllDishes = function () {
-    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'
+  this.getAllDishes = function (type, filter) {
+    let url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?'
+    url +=  type ? "&type=" + type : '';
+    url += filter ? "&query=" + filter : '';
     return fetch(url, httpOptions)
       .then(processResponse)
       .catch(handleError)
   }
+
 	
 	
 	this.getDish = function (id) {  
@@ -44,6 +68,7 @@ const DinnerModel = function () {
     return fetch(url, httpOptions)
     	.then(processResponse)
       .catch(handleError)
+
   }
   
 	
