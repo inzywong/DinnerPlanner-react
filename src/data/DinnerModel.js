@@ -18,8 +18,10 @@ const DinnerModel = function () {
 
   // API Calls
 
-  this.getAllDishes = function () {
-    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'
+  this.getAllDishes = function (type, filter) {
+    let url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?'
+    url +=  type ? "&type=" + type : '';
+    url += filter ? "&query=" + filter : '';
     return fetch(url, httpOptions)
       .then(processResponse)
       .catch(handleError)
