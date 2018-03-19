@@ -13,14 +13,13 @@ class Dishes extends Component {
     this.state = {
       status: 'INITIAL',
       filter: '',
-      type: 'drink' || ''
+      type: 'all' || ''
     }
-    this.filter;
-    this.type;
-
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // this methods is called by React lifecycle when the 
+  // This methods is called by React lifecycle when the 
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
   componentDidMount = () => {
@@ -38,9 +37,18 @@ class Dishes extends Component {
     })
   }
 
-  handleChange(event) {
-        this.setState({type: event.target.value});
+  handleChange(event){
+    console.log(event.target.value);
+    this.setState({type: event.target.value})
+    this.componentDidMount();
     }
+  handleSubmit(event){
+    this.setState({filter: event.target.value})
+    this.componentDidMount();  
+  }
+
+
+
   render() {
     let dishesList = null;
     // depending on the state we either generate
@@ -53,38 +61,49 @@ class Dishes extends Component {
       case 'LOADED':
         {/*<Link to="/dish"></Link>*/ }
         dishesList = this.state.dishes.map((dish) =>
-        <div className="col-md-6">    
-        <Link to={dish/+dish.id}>
-          <div className="dishes"><img className="dishImage" style={{width:150, height: 150}} src={"https://spoonacular.com/recipeImages/" + dish.image} />
-          <p className="dishTitle"> {dish.title} </p>
-        </div> </Link>
-        </div>
-
-
+					<a href="#" key={dish.id} data-id={dish.id} className="nav-to-dish">
+						<div className="dishes floatLeft" style={{width:220, height: 300}}>
+							<img className="dishImage" style={{width:200, height: 200}} src={"https://spoonacular.com/recipeImages/" + dish.image} />
+							<p className="dishTitle"> {dish.title} </p>
+						</div>
+					</a>
         )
         break;
+				
       default:
         dishesList = <b>Failed to load data, please try again</b>
         break;
     }
 
     return (
-      <div className="container bg-primary">
+      <div className="container col-md-10 Dishes">
         <div className="row">
-          <select className="custom-select mr-sm-2 dropdown btn btn-primary dropdown-toggle custom-select mb-2 mr-sm-2 mb-sm-0" id="select-dish-type" onChange={this.handleChange} value={this.state.type}>
-            <option value="all" selected>All</option>
-						<option value="starter">Starter</option>
-						<option value="main dish">Main Dish</option>
-						<option value="dessert">Dessert</option>
-						<option value="side dish">Side Dish</option>
-						<option value="salad">Salad</option>
-						<option value="bread">Bread</option>
-						<option value="soup">Soup</option>
-						<option value="beverage">Beverage</option>       
-          </select>
+          <h3>Searchfield</h3>
+          <div className="floatLeft">
+            <form className="form-inline" id="searchBar">
+              <input type="text" ref="search" className="form-control col-sm-10 col-form-label mb-10 mr-sm-10 mb-sm-0" onSubmit={this.handleSubmit} placeholder="Search..."/>
+              <span>
+                <button type="button" className="btn btn-primary specialButton">
+                  <span className="glyphicon glyphicon-search "></span>
+                  Search
+                </button>
+              </span>
+              <select className="custom-select dropdown btn btn-primary dropdown-toggle custom-select col-sm-4 col-form-label mb-4 mr-sm-4 mb-sm-0" id="select-dish-type" onChange={this.handleChange} value={this.state.value}>
+                <option value="all" >All</option>
+                <option value="starter">Starter</option>
+                <option value="main dish">Main Dish</option>
+                <option value="dessert">Dessert</option>
+                <option value="side dish">Side Dish</option>
+                <option value="salad">Salad</option>
+                <option value="bread">Bread</option>
+                <option value="soup">Soup</option>
+                <option value="beverage">Beverage</option>       
+              </select>
+            </form>
+          </div>
         </div>
         <div className="row">
-          <div className="Dishes bg-success">
+          <div className="col-md-12" id="dishImages">
             <h3>Dishes</h3>
             <hr></hr>
               {dishesList}

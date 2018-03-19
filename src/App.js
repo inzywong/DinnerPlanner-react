@@ -15,31 +15,37 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className= "App">
 				
         <header className="App-header">
 			
 					{/* HEADER ------------------------------------------------- */}
-					<div class="row myHeader">
-							<div class="col-sm-12" style= {{padding: 0}}>
-									<div class="addBorder-bottom text-center">
+					<div className="row myHeader">
+							<div className="col-sm-12" style= {{padding: 0}}>
+									<div className="addBorder-bottom text-center">
 											<h1>{this.state.title}</h1>
 									</div>
 							</div>
 					</div>
 				{/* END OF HEADER -------------------------------------------- */}
 			
-		          
+	
+        </header>
+		
+			
+				{/* CONTENT ------------------------------------------------ */}			
+		    <div className="appContent container-fluid">
           {/* We rended diffrent component based on the path */}
 					<Route exact path="/" component={Welcome}/> {/* This brings us to the Welcome view */}
-          <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
-        </header>
+          <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>					
+				</div>
+				{/* END OF CONTENT ----------------------------------------- */}			
 		
 		
 		    {/* FOOTER */}
-		    <div class="row myFooter">
-        	<div class="col-sm-12 text-center addBorder-top">
-        		<p><span class="glyphicon glyphicon-copyright-mark"></span> 2018 KTH All RIGHTS RESERVED</p>
+		    <div className="myFooter">
+        	<div className="col-sm-12 text-center addBorder-top">
+        		<p><span className="glyphicon glyphicon-copyright-mark"></span> 2018 KTH All RIGHTS RESERVED</p>
         	</div>		
     		</div>
 				{/* END OF FOOTER */}

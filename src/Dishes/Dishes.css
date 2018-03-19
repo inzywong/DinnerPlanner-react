@@ -1,5 +1,34 @@
 .dishes{
-border: 2px solid black;
-padding: 5px;
-margin: 5px;
+	border: 2px solid black;
+	padding: 5px;
+	margin: 5px;
 }
+
+.dishImage{
+    border: 2px solid black;
+}
+
+.floatLeft{
+	float: left;
+}
+
+a:visited {
+    color: black;
+}
+a:hover {
+    font-style: italic;
+}
+
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.green{
+    background-color: green;
+}
+.yellow{
+    background-color: yellow;
+}
+
