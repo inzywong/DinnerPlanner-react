@@ -34,7 +34,7 @@ class Sidebar extends Component {
   update() {
     this.setState({
 			numberOfGuests: this.props.model.getNumberOfGuests(),
-			totalPrice: this.props.model.getTotalMenuPrice ()
+			totalPrice: this.props.model.getTotalMenuPrice()
     })
   }
 
@@ -44,8 +44,8 @@ class Sidebar extends Component {
     this.props.model.setNumberOfGuests(+e.target.value)
   }*/
 	onNumberOfGuestsChanged = (increment) => {
-		var nGuests = this.state.numberOfGuests;
-		
+		//var nGuests = this.state.numberOfGuests;
+		var nGuests = this.props.model.getNumberOfGuests();
 		nGuests += increment;
 		
 		if(nGuests <0){
@@ -78,7 +78,7 @@ class Sidebar extends Component {
     return (
       <div className="Sidebar col-sm-2">
         <h3>My Dinner</h3>
-				<p>Number Of Guests: {this.state.numberOfGuests}</p>
+				<p className="smallText">Number Of Guests: {this.state.numberOfGuests}</p>
 
 				<div className="row border-bottom">
 					<button	className="btn" onClick={() => this.onNumberOfGuestsChanged(-1)}>

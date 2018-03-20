@@ -8,42 +8,53 @@ const DinnerModel = function () {
   var numberOfGuests = 0;
   var observers = [];
   let menu = [];
+  var menuPrice=0;
 
 
   this.setNumberOfGuests = function (num) {
-      numberOfGuests =num;
-      localStorage.setItem('numberOfGuest', numberOfGuests);
-    notifyObservers();
-  };
+      numberOfGuests = num;
+      localStorage.setItem('numberOfGuest', JSON.stringify(numberOfGuests));
+      notifyObservers();
+  }
 
   this.getNumberOfGuests = function () {
-   /* if(localStorage.getItem('numberOfGuest')!=numberOfGuests && numberOfGuests===0)
-      return localStorage.getItem('numberOfGuest');
-    else*/
-      return numberOfGuests;
-  };
-	
+      if(localStorage.getItem('numberOfGuest'))
+        return JSON.parse(localStorage.getItem('numberOfGuest'));
+      else
+        return numberOfGuests;
+  }
+
+  this.getMenuPrice= function () {
+      return menuPrice;
+  }
 
   this.getMenu = function () {
-    return menu;
+    if( localStorage.getItem('menu'))
+      return menu=JSON.parse(localStorage.getItem('menu'));
+    else
+      return menu;
   }
 
   this.getTotalMenuPrice = function() 
   {
-    var totalPrice = 0;
-    
-        for(var i=0; i< menu.length; i++)
-        {
-            totalPrice += menu[i].pricePerServing;
+    var totalPrice=0;
+    var tempMenu = this.getMenu();
+        for(var i=0; i< tempMenu.length; i++)
+        { 
+            totalPrice += tempMenu[i].pricePerServing;
+
         }
-		return (totalPrice*numberOfGuests).toFixed(2);  
+        menuPrice=totalPrice*numberOfGuests;
+		return (menuPrice).toFixed(2);  
   }
 
-  this.addDishToMenu = function (dish) {
+  this.addDishToMenu = function (dish) {      
     if(!menu.some(d => d.id === dish.id)) {
       menu.push(dish);
-      notifyObservers();
     }
+    localStorage.setItem('menu', JSON.stringify(menu));
+    notifyObservers();
+
   }
 
   this.removeDishFromMenu = function (dishId) {
