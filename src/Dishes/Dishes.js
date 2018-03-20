@@ -37,14 +37,43 @@ class Dishes extends Component {
       })
     })
   }
+  componentDidMount(){
+    this.props.model.addObserver(this)
+
+  }
+	update(){
+    this.componentDidMount();
+
+	}
 
   handleChange(event){
+    event.preventDefault();
     this.setState({type: event.target.value})
-    this.componentDidMount();
+    modelInstance.getAllDishes( event.target.value, this.state.filter).then(dishes => {
+      this.setState({
+        status: 'LOADED',
+        dishes: dishes.results
+      })
+    }).catch(() => {
+      this.setState({
+        status: 'ERROR'
+      })
+    })  
   }
+
   handleSubmit(event){
+    event.preventDefault();
     this.setState({filter: event.target.value})
-    this.componentDidMount();  
+    modelInstance.getAllDishes( this.state.type, event.target.value).then(dishes => {
+      this.setState({
+        status: 'LOADED',
+        dishes: dishes.results
+      })
+    }).catch(() => {
+      this.setState({
+        status: 'ERROR'
+      })
+    }) 
   }
 
 
@@ -84,15 +113,17 @@ class Dishes extends Component {
           <div className="row">
           <div className="col-md-3">
           </div>
-          <div className="col-md-9 floatLeft">
-            <form className="form-inline" id="searchBar">
-              <input type="text" ref="search" className="form-control" onChange={this.handleSubmit} placeholder="Search..."/>
-              <span>
-                <button type="button" className="btn btn-primary specialButton">
-                  <span className="glyphicon glyphicon-search "></span>
+          <div className="col-md-9 floatLeft form-inline">
+            <form className="form-inline"  >
+              <input onChange={this.handleSubmit} type="text" ref="search" className="form-control" placeholder="Search..."/>
+              {/*<span>
+                <button type="button" className="btn btn-primary specialButton" >
+              <span className="glyphicon glyphicon-search "></span>
                   Search
                 </button>
-              </span>
+              </span>*/}
+              </form>
+
               <select className="custom-select dropdown btn btn-primary dropdown-toggle custom-select col-sm-2 col-form-label mb-2 mr-sm-2 mb-sm-0" id="select-dish-type" onChange={this.handleChange} value={this.state.value}>
                 <option value="all" >All</option>
                 <option value="starter">Starter</option>
@@ -104,7 +135,6 @@ class Dishes extends Component {
                 <option value="soup">Soup</option>
                 <option value="beverage">Beverage</option>       
               </select>
-            </form>
           </div>
         </div>
         <div className="row">
