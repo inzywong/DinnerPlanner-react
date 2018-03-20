@@ -8,6 +8,7 @@ import SelectDish from "./SelectDish/SelectDish";
 import DishDetails from "./DishDetails/DishDetails";
 
 import Summary from "./Summary/Summary";
+import Print from "./Print/Print";
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class App extends Component {
 					<Route path="/search"  render={() => <SelectDish model={modelInstance}/>}/>			
           <Route path="/dish/:id" render={(props) => <DishDetails model={modelInstance} {...props}/>}/>
           <Route path="/summary" render={() => <Summary model={modelInstance}/>}/>					
+          <Route path="/print" render={() => <Print model={modelInstance}/>}/>					
 				</div>
 				{/* END OF CONTENT ----------------------------------------- */}			
 		

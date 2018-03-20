@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Summary.css';
+import './Print.css';
 import { Link } from 'react-router-dom';
 
-class Summary extends Component {
+class Print extends Component {
 	constructor(props) {
 		super(props)
 
@@ -28,21 +28,35 @@ class Summary extends Component {
 		let menu =null;
 
 		menu = this.state.dishesSelected.map((dish) =>
-			<div className="dishes floatLeft" style={{width:215, height: 300}}>													 
-				<img className="dishImage" style={{width:200, height: 200}} src={dish.image} />
-				<p className="dishTitle"> {dish.title} </p>
-			</div>
+			<div className="row border-Bottom">
+				<div className="col-md-1"></div> 
+				<div className="col-md-2"> 
+					<img src={dish.image} style={{width:150, height: 150}}/> 
+				</div> 
+				<div className="col-md-4"> 
+					<h5>{dish.title}</h5> 
+					<p>{dish.instructions }</p> 
+				</div>  
+				<div className="col-md-4"> 
+					<h5>Preperations</h5> 
+					<p> {dish.instructions}</p> 
+				</div> 
+				<div className="col-md-4">
+				</div>
+				</div>
+
+
     )
 
     return (
       <div className="container col-md-12">
 				<div className="row border-Bottom">
             <div className="col-sm-9">
-              <h3>Dinner for {this.state.nGuests} people
+              <h3>Print dinner for {this.state.nGuests} people
 							</h3>
             </div>
             <div className="col-sm-3">
-							<Link to="./search">
+							<Link to="./summary">
                 <button id ="return_to_previous_page_button" type="button" className="btn btn-primary">
 								<span className="glyphicon glyphicon-arrow-left"></span>Return to previous page
 								</button>
@@ -54,25 +68,10 @@ class Summary extends Component {
 							{menu}
 						</div>
 					</div>
-					<div className="row">
-						<div className="col-sm-9"></div>
-						<div className="col-sm-3 bottom-align-text">
-
-						<h3 >Total: {this.state.totalPrice}</h3>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-5">
-					</div>
-					<div className="col-md-2">
-						<Link to="./print">
-						<button type="button" class="btn btn-primary">Print Full Recipe</button>
-						</Link>
-					</div>
-				</div>
+					
 		</div>
     );
   }
 }
 
-export default Summary;
+export default Print;
