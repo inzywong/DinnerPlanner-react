@@ -3,7 +3,6 @@ const httpOptions = {
 };
 
 const DinnerModel = function () {
-
 	
   var numberOfGuests = 0;
   var observers = [];
@@ -39,12 +38,18 @@ const DinnerModel = function () {
   {
     var totalPrice=0;
     var tempMenu = this.getMenu();
-        for(var i=0; i< tempMenu.length; i++)
-        { 
-            totalPrice += tempMenu[i].pricePerServing;
 
-        }
-        menuPrice=totalPrice*numberOfGuests;
+		
+    for(var i=0; i< tempMenu.length; i++)
+    { 
+    	totalPrice += tempMenu[i].pricePerServing;
+    }
+		//console.log(totalPrice);
+		console.log(this.getNumberOfGuests());
+		
+    menuPrice=totalPrice*this.getNumberOfGuests();		
+
+		
 		return (menuPrice).toFixed(2);  
   }
 

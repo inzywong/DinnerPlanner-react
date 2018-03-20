@@ -32,6 +32,9 @@ class Sidebar extends Component {
   // in our update function we modify the state which will
   // cause the component to re-render
   update() {
+		
+		console.log("We are in the update!");
+		
     this.setState({
 			numberOfGuests: this.props.model.getNumberOfGuests(),
 			totalPrice: this.props.model.getTotalMenuPrice()
@@ -57,6 +60,11 @@ class Sidebar extends Component {
 	
 
   render() {
+		this.state.totalPrice = this.props.model.getTotalMenuPrice();
+		console.log("this.state.totalPrice: " + this.props.model.getTotalMenuPrice());
+		console.log("this.state.totalPrice: " + this.state.numberOfGuests);		
+		
+		
 		
 		var dishesOnMenu = this.props.model.getMenu().map((dish) =>
 					<div className = "row border-Bottom" key={"sidebar"+dish.id}> 
