@@ -55,7 +55,7 @@ class DishInformation extends Component {
 			}}
 			
 			ingredients = this.props.dish.extendedIngredients.map((ingredient) =>
-					<div className='row'>																	
+					<div className='row' key={ingredient.id}>																	
 
 						<div className='col-sm-3 text-right'> 
 							<img src={ingredient.image} height='42' width='42' ></img>  
@@ -90,7 +90,7 @@ class DishInformation extends Component {
 						{/* Dish Title + Image + Preparation */}
 						<div className="col-sm-5 ">
 							<h1 id="dish_name"> {dishName} </h1>
-              	<img src={dishImage} alt={dishImage} className="dishPic"></img>
+              				<img src={dishImage} alt={dishImage} className="dishPic"></img>
 			
 								<div className="col-md-12 text-left">
 									<Link to="/search">

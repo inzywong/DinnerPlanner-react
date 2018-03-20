@@ -59,9 +59,9 @@ class Sidebar extends Component {
   render() {
 		
 		var dishesOnMenu = this.props.model.getMenu().map((dish) =>
-					<div className = "row border-Bottom"> 
+					<div className = "row border-Bottom" key={"sidebar"+dish.id}> 
 						<div  className="col-md-8 noPadding"  > 
-							<p  ClassName="smallText"> {dish.title} </p>
+							<p  className="smallText"> {dish.title} </p>
 						</div>
 						<div  className="col-md-4 noPadding"  > 
 							<p> {dish.pricePerServing.toFixed(0)} </p>

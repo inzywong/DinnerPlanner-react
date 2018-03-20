@@ -13,7 +13,8 @@ class Summary extends Component {
 		}
 	}
 	componentDidMount() {
-    this.props.model.addObserver(this)
+		this.props.model.addObserver(this),
+		this.props.model.getMenu()
   }
 
 	update(){
@@ -28,7 +29,7 @@ class Summary extends Component {
 		let menu =null;
 
 		menu = this.state.dishesSelected.map((dish) =>
-			<div className="dishes floatLeft" style={{width:215, height: 300}}>													 
+			<div key={"summary"+dish.id} className="dishes floatLeft" style={{width:215, height: 300}}>													 
 				<img className="dishImage" style={{width:200, height: 200}} src={dish.image} />
 				<p className="dishTitle"> {dish.title} </p>
 			</div>
@@ -66,7 +67,7 @@ class Summary extends Component {
 					</div>
 					<div className="col-md-2">
 						<Link to="./print">
-						<button type="button" class="btn btn-primary">Print Full Recipe</button>
+						<button type="button" className="btn btn-primary">Print Full Recipe</button>
 						</Link>
 					</div>
 				</div>

@@ -28,7 +28,7 @@ class Print extends Component {
 		let menu =null;
 
 		menu = this.state.dishesSelected.map((dish) =>
-			<div className="row border-Bottom">
+			<div key={"print"+dish.id} className="row border-Bottom">
 				<div className="col-md-1"></div> 
 				<div className="col-md-2"> 
 					<img src={dish.image} style={{width:150, height: 150}}/> 

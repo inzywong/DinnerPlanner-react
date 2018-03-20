@@ -12,12 +12,16 @@ const DinnerModel = function () {
 
 
   this.setNumberOfGuests = function (num) {
-    numberOfGuests = num;
+      numberOfGuests =num;
+      localStorage.setItem('numberOfGuest', numberOfGuests);
     notifyObservers();
   };
 
   this.getNumberOfGuests = function () {
-    return numberOfGuests;
+   /* if(localStorage.getItem('numberOfGuest')!=numberOfGuests && numberOfGuests===0)
+      return localStorage.getItem('numberOfGuest');
+    else*/
+      return numberOfGuests;
   };
 
 

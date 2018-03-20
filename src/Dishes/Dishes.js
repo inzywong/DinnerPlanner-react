@@ -90,7 +90,7 @@ class Dishes extends Component {
       case 'LOADED':
 				
         dishesList = this.state.dishes.map((dish) =>
-						<div className="dishes floatLeft" style={{width:215, height: 300}}>													 
+						<div className="dishes floatLeft" key={dish.id} style={{width:215, height: 300}}>													 
 							<Link to= {"/dish/"+dish.id} >
 								<img className="dishImage" style={{width:200, height: 200}} src={"https://spoonacular.com/recipeImages/" + dish.image} />
 								<p className="dishTitle"> {dish.title} </p>
