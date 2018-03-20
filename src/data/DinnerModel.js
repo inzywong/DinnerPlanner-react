@@ -7,7 +7,6 @@ const DinnerModel = function () {
 	
   var numberOfGuests = 0;
   var observers = [];
-	var dishesSelected = [];	
   let menu = [];
 
 
@@ -23,32 +22,19 @@ const DinnerModel = function () {
     else*/
       return numberOfGuests;
   };
-
-
-	
-	this.addDishToMenu_kaua = function(dish){
-    if(!dishesSelected.some(d => d.id === dish.id)) {
-      dishesSelected.push(dish);
-      notifyObservers();		
-    }
-	}
-	
-	this.getMenu_kaua = function(){
-		return dishesSelected;
-	}
 	
 
   this.getMenu = function () {
-    return dishesSelected;
+    return menu;
   }
 
   this.getTotalMenuPrice = function() 
   {
     var totalPrice = 0;
     
-        for(var i=0; i< dishesSelected.length; i++)
+        for(var i=0; i< menu.length; i++)
         {
-            totalPrice += dishesSelected[i].pricePerServing;
+            totalPrice += menu[i].pricePerServing;
         }
 		return (totalPrice*numberOfGuests).toFixed(2);  
   }

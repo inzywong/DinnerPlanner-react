@@ -28,7 +28,7 @@ class DishInformation extends Component {
 	
 	
 	addDishToMenu = () => {
-		this.props.model.addDishToMenu_kaua(this.props.dish);
+		this.props.model.addDishToMenu(this.props.dish);
   }
 
 	render() {    
