@@ -48,10 +48,11 @@ class DishInformation extends Component {
 			dishName  = dish.title;
 			
 			preparation = [];
+			if(dish.analyzedInstructions[0]){
 			for(var i=0; i<dish.analyzedInstructions[0].steps.length; i++)
 			{
 				preparation.push(dish.analyzedInstructions[0].steps[i].step); 
-			}
+			}}
 			
 			ingredients = this.props.dish.extendedIngredients.map((ingredient) =>
 					<div className='row'>																	
@@ -82,12 +83,12 @@ class DishInformation extends Component {
 	
         
 		return ( 
-			<div class="col-sm-10 addBorder-left" id="dishDetails">
-				<div class="container-fluid" id="dishDetailsColumnContainer">
-					<div class="row" id="dishDetailsRowContainer">
+			<div className="col-sm-10 addBorder-left" id="dishDetails">
+				<div className="container-fluid" id="dishDetailsColumnContainer">
+					<div className="row" id="dishDetailsRowContainer">
 			
 						{/* Dish Title + Image + Preparation */}
-						<div class="col-sm-5 ">
+						<div className="col-sm-5 ">
 							<h1 id="dish_name"> {dishName} </h1>
               	<img src={dishImage} alt={dishImage} className="dishPic"></img>
 			
@@ -105,7 +106,7 @@ class DishInformation extends Component {
 						</div>
 			
 						{/* Ingredients Table */}
-						<div class="col-sm-7 " >
+						<div className="col-sm-7 " >
 				   		<h1> Ingredients for {this.state.nGuests} people</h1>
 			
 							<div className='container-fluid'>																											
@@ -113,7 +114,9 @@ class DishInformation extends Component {
 							</div>
 			
 							<div className="col-md-12 text-left">
-								<button type="button" className="btn btn-primary" onClick={this.addDishToMenu_kaua} >Add to Menu</button>
+							<Link to="/search">
+								<button type="button" className="btn btn-primary" onClick={this.addDishToMenu} >Add to Menu</button>
+								</Link>
 							</div>		
 			
 						</div>

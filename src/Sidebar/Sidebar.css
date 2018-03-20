@@ -12,3 +12,11 @@
 .floatLeft {
 	float: left;
 }
+
+.smallText{
+	font-size: 5px;
+}
+
+.border-Bottom{
+	border-bottom: 1px solid black;
+}

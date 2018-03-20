@@ -11,7 +11,8 @@ class Sidebar extends Component {
     
     // We put on state the properties we want to use and modify in the component
     this.state = {
-      numberOfGuests: this.props.model.getNumberOfGuests()
+			numberOfGuests: this.props.model.getNumberOfGuests(),
+			totalPrice: this.props.model.getTotalMenuPrice ()
     }
   }
 
@@ -32,7 +33,8 @@ class Sidebar extends Component {
   // cause the component to re-render
   update() {
     this.setState({
-      numberOfGuests: this.props.model.getNumberOfGuests()
+			numberOfGuests: this.props.model.getNumberOfGuests(),
+			totalPrice: this.props.model.getTotalMenuPrice ()
     })
   }
 
@@ -57,14 +59,16 @@ class Sidebar extends Component {
   render() {
 		
 		var dishesOnMenu = this.props.model.getMenu().map((dish) =>
-					<div className = 'row'> 
-						<div  className='col-md-6 noPadding'  > 
-							<p> {dish.title} </p>
+					<div className = "row border-Bottom"> 
+						<div  className="col-md-8 noPadding"  > 
+							<p  ClassName="smallText"> {dish.title} </p>
 						</div>
-						<div  className='col-md-6 noPadding'  > 
-							<p> {dish.pricePerServing} </p>
+						<div  className="col-md-4 noPadding"  > 
+							<p> {dish.pricePerServing.toFixed(0)} </p>
 						</div>
-					</div>																						
+						<hr></hr>																				
+
+					</div>		
 							
     )				
 																
@@ -73,10 +77,10 @@ class Sidebar extends Component {
 				
     return (
       <div className="Sidebar col-sm-2">
-        <h1>My Dinner</h1>
-				<p>Number Of Guests: <span id="nGuests">{this.state.numberOfGuests}</span></p>
+        <h3>My Dinner</h3>
+				<p>Number Of Guests: {this.state.numberOfGuests}</p>
 
-				<div>
+				<div className="row border-bottom">
 					<button	className="btn" onClick={() => this.onNumberOfGuestsChanged(-1)}>
 						{/*glyphicon glyphicon-minus is not working I'm not sure why */}
 						<span className="glyphicon glyphicon-minus"> - </span>
@@ -86,14 +90,14 @@ class Sidebar extends Component {
 					</button>		
 				</div> 
 			
-				<div className="row" >
+				<div className="row border-bottom" >
 					{/* left div */}
-					<div className="col-md-6 noPadding floatLeft" >
+					<div className="col-md-8 noPadding floatLeft" >
 						<p className="textAlignLeft">Dish Name</p>                    
 					</div>
 
 					{/* right div */}
-					<div className="col-md-6">
+					<div className="col-md-4">
 						<p className="textAlignRight">Cost</p>
 					</div>
 				</div>
@@ -102,15 +106,15 @@ class Sidebar extends Component {
 					{dishesOnMenu}
 				</div>
 
-				<div >
+				<div className="row" >
 					{/* left div */}
-					<div className="col-md-6 noPadding floatLeft" >
+					<div className="col-md-5 noPadding floatLeft" >
 					 <p className="textAlignLeft">TOTAL </p>                    
 					</div>
 
 					{/* right div */}
-					 <div className="col-md-6">
-					 <p id="total_cost" className="textAlignRight">SEK 0.00</p>
+					 <div className="col-md-7">
+					 <p id="total_cost" className="textAlignRight">{this.state.totalPrice}:- </p>
 					 </div>                        
 				</div>
 

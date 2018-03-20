@@ -61,8 +61,7 @@ class Dishes extends Component {
       case 'LOADED':
 				
         dishesList = this.state.dishes.map((dish) =>
-				
-						<div className="dishes floatLeft" style={{width:220, height: 260}}>													 
+						<div className="dishes floatLeft" style={{width:215, height: 300}}>													 
 							<Link to= {"/dish/"+dish.id} >
 								<img className="dishImage" style={{width:200, height: 200}} src={"https://spoonacular.com/recipeImages/" + dish.image} />
 								<p className="dishTitle"> {dish.title} </p>
@@ -77,19 +76,24 @@ class Dishes extends Component {
     }
 
     return (
-      <div className="container addBorder-left col-md-10 Dishes">
-        <div className="row">
-          <h3>Searchfield</h3>
-          <div className="floatLeft">
+      <div className="container addBorder-left col-md-10">
+        <div className="row col-md-12">
+          <h3>Search</h3>
+          <hr></hr>
+          </div>
+          <div className="row">
+          <div className="col-md-3">
+          </div>
+          <div className="col-md-9 floatLeft">
             <form className="form-inline" id="searchBar">
-              <input type="text" ref="search" className="form-control col-sm-10 col-form-label mb-10 mr-sm-10 mb-sm-0" onChange={this.handleSubmit} placeholder="Search..."/>
+              <input type="text" ref="search" className="form-control" onChange={this.handleSubmit} placeholder="Search..."/>
               <span>
                 <button type="button" className="btn btn-primary specialButton">
                   <span className="glyphicon glyphicon-search "></span>
                   Search
                 </button>
               </span>
-              <select className="custom-select dropdown btn btn-primary dropdown-toggle custom-select col-sm-4 col-form-label mb-4 mr-sm-4 mb-sm-0" id="select-dish-type" onChange={this.handleChange} value={this.state.value}>
+              <select className="custom-select dropdown btn btn-primary dropdown-toggle custom-select col-sm-2 col-form-label mb-2 mr-sm-2 mb-sm-0" id="select-dish-type" onChange={this.handleChange} value={this.state.value}>
                 <option value="all" >All</option>
                 <option value="starter">Starter</option>
                 <option value="main dish">Main Dish</option>
@@ -104,7 +108,7 @@ class Dishes extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-12" id="dishImages">
+          <div className="col-md-12 Dishes" id="dishImages">
             <h3>Dishes</h3>
             <hr></hr>
               {dishesList}

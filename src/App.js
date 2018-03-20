@@ -44,7 +44,6 @@ class App extends Component {
 
 					<Route path="/search"  render={() => <SelectDish model={modelInstance}/>}/>			
           <Route path="/dish/:id" render={(props) => <DishDetails model={modelInstance} {...props}/>}/>
-
           <Route path="/summary" render={() => <Summary model={modelInstance}/>}/>					
 				</div>
 				{/* END OF CONTENT ----------------------------------------- */}			
