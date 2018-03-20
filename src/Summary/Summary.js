@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class Summary extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 
 		this.state = {
 			nGuests: this.props.model.getNumberOfGuests(),
@@ -13,8 +13,7 @@ class Summary extends Component {
 		}
 	}
 	componentDidMount() {
-		this.props.model.addObserver(this),
-		this.props.model.getMenu()
+		this.props.model.addObserver(this)
   }
 
 	update(){
